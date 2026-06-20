@@ -235,6 +235,62 @@
     .ftr__bar p{font-size:.75rem;color:rgba(255,255,255,.28)}
 
     /* =========================================
+       BANNERS / DESTAQUES
+    ========================================= */
+    .banners{background:var(--black);padding:4.5rem 0 4rem}
+    @media(min-width:768px){.banners{padding:6rem 0 5rem}}
+
+    .banners__hd{text-align:center;margin-bottom:2.75rem}
+    .banners__eyebrow{display:flex;align-items:center;justify-content:center;gap:.65rem;margin-bottom:.85rem}
+    .banners__eyebrow::before,.banners__eyebrow::after{content:'';display:block;width:20px;height:2px;background:var(--orange);flex-shrink:0}
+    .banners__ttl{color:var(--white)}
+    .banners__ttl span{color:var(--orange)}
+
+    .banners__stage{position:relative}
+
+    .banners__track{position:relative;display:flex;gap:.875rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 1.5rem 1rem}
+    .banners__track::-webkit-scrollbar{display:none}
+    @media(min-width:768px){.banners__track{gap:1.25rem;padding:0 2.5rem 1rem}}
+    @media(min-width:1200px){.banners__track{padding:0 3rem 1rem}}
+
+    .bnr-card{position:relative;flex-shrink:0;width:80vw;max-width:320px;height:430px;border-radius:var(--radius);overflow:hidden;scroll-snap-align:start;display:block;cursor:pointer}
+    @media(min-width:480px){.bnr-card{width:75vw;max-width:360px}}
+    @media(min-width:640px){.bnr-card{width:calc(50% - .625rem);max-width:400px;height:460px}}
+    @media(min-width:1024px){.bnr-card{width:calc(33.333% - .875rem);max-width:none;height:500px}}
+
+    .bnr-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease)}
+    .bnr-card:hover .bnr-card__img{transform:scale(1.08)}
+
+    .bnr-card__veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.28) 50%,rgba(0,0,0,.04) 100%);transition:background .3s var(--ease)}
+    .bnr-card:hover .bnr-card__veil{background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.5) 55%,rgba(0,0,0,.1) 100%)}
+
+    .bnr-card__body{position:absolute;bottom:0;left:0;right:0;padding:1.4rem}
+
+    .bnr-card__tag{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--white);background:var(--orange);padding:.2rem .55rem;border-radius:3px;margin-bottom:.55rem}
+
+    .bnr-card__name{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;color:var(--white);letter-spacing:.03em;line-height:.97;margin-bottom:.4rem}
+    @media(min-width:768px){.bnr-card__name{font-size:2rem}}
+
+    .bnr-card__desc{font-size:.78rem;color:rgba(255,255,255,.68);margin-bottom:.85rem;line-height:1.5}
+
+    .bnr-card .btn{font-size:.68rem;padding:.5rem 1.15rem;opacity:0;transform:translateY(6px);transition:opacity .28s var(--ease),transform .28s var(--ease),background-color .25s var(--ease),box-shadow .25s var(--ease)}
+    .bnr-card:hover .btn{opacity:1;transform:none}
+
+    .banners__btn{display:none}
+    @media(min-width:768px){
+      .banners__btn{display:flex;position:absolute;top:50%;transform:translateY(calc(-50% - .5rem));z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);align-items:center;justify-content:center;color:var(--white);cursor:pointer;transition:background .22s var(--ease),border-color .22s,transform .22s var(--ease)}
+      .banners__btn:hover{background:var(--orange);border-color:var(--orange);transform:translateY(calc(-50% - .5rem)) scale(1.1)}
+      .banners__btn svg{width:20px;height:20px;stroke:currentColor}
+      .banners__btn--prev{left:.5rem}
+      .banners__btn--next{right:.5rem}
+    }
+
+    .banners__dots{display:flex;justify-content:center;align-items:center;gap:.4rem;margin-top:1.5rem;padding:0 1.5rem;flex-wrap:wrap}
+    .banners__dot{padding:0;border:none;background:rgba(255,255,255,.2);cursor:pointer;flex-shrink:0;border-radius:50%;width:7px;height:7px;transition:background .25s var(--ease),width .3s var(--ease),border-radius .3s var(--ease)}
+    .banners__dot.act{width:22px;border-radius:3.5px;background:var(--orange)}
+    .banners__dot:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+
+    /* =========================================
        REVEAL ANIMATIONS
     ========================================= */
     .rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
