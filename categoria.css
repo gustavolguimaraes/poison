@@ -148,6 +148,68 @@ a.prod-card {
   line-height: 1.75;
 }
 
+.cat-brand-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: -1rem 0 2.5rem;
+}
+.cat-brand-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.55rem 1.15rem;
+  border: 1px solid #dedede;
+  border-radius: var(--radius);
+  background: var(--gray-bg);
+  color: var(--black);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    transform 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+.cat-brand-nav a:hover,
+.cat-brand-nav a:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--orange);
+  background: var(--orange);
+  color: var(--white);
+}
+.cat-brand-nav a:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 3px;
+}
+
+.cat-prod-card[id^="marca-"],
+.cat-brand-empty {
+  scroll-margin-top: calc(var(--hdr-h) + 1rem);
+}
+.cat-brand-empty {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.85rem;
+  margin: -1rem 0 3rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--orange);
+  border-radius: var(--radius);
+  background: var(--gray-bg);
+  color: var(--gray-txt);
+  font-size: 0.9rem;
+}
+.cat-brand-empty strong {
+  color: var(--orange-d);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .cat-prod-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
