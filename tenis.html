@@ -218,7 +218,18 @@
     // ── PRODUTOS DA CATEGORIA (baseados nos arquivos das pastas) ──
     const productGrid = document.getElementById('catProdGrid');
     const productFiles = [
-      './assets/categorias/tenis/new balance/1010 tiago lemos cinza : bege claro.png',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/603 - Branco:Cinza.avif',   
+      './assets/categorias/tenis/new balance/adds 2026-10-23/530 - Prata:Grafite.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/530 - Preto:Branco.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/480 Low - Black:Harbor Gray.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/480 Low - Branco.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/480 Low - Branco:Preto:Cinza.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/480 Low - Café.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/480 Low - Grafite.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/480 Low - Preto:Bege Claro.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/480 Low - Preto:Branco.avif',
+      './assets/categorias/tenis/new balance/adds 2026-10-23/480 Low - Verde Oliva.avif',
+      './assets/categorias/tenis/new balance/1010 tiago lemos cinza : bege.png',
       './assets/categorias/tenis/new balance/440 v2 bege claro : azul.png',
       './assets/categorias/tenis/new balance/480 Low Grafite.png',
       './assets/categorias/tenis/new balance/NM 808 preto : vermelho.png',
@@ -315,7 +326,7 @@
     if (productGrid) {
       productFiles.forEach((filePath, index) => {
         const parts = filePath.split('/');
-        const brand = toTitleCase(parts[parts.length - 2]);
+        const brand = toTitleCase(parts[parts.indexOf('tenis') + 1]);
         const name = formatName(parts[parts.length - 1]);
         const card = document.createElement('article');
         const delayClass = index % 4 === 1 ? ' rv-d1' : index % 4 === 2 ? ' rv-d2' : index % 4 === 3 ? ' rv-d3' : '';

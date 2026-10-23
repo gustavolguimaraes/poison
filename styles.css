@@ -1200,6 +1200,16 @@ section {
   transform: scale(1.08);
 }
 
+.bnr-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.bnr-card__link:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -4px;
+}
+
 .bnr-card__veil {
   position: absolute;
   inset: 0;
@@ -1225,7 +1235,9 @@ section {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 2;
   padding: 1.4rem;
+  pointer-events: none;
 }
 
 .bnr-card__tag {
@@ -1263,6 +1275,8 @@ section {
 }
 
 .bnr-card .btn {
+  position: relative;
+  pointer-events: auto;
   font-size: 0.68rem;
   padding: 0.5rem 1.15rem;
   opacity: 0;
@@ -1274,6 +1288,10 @@ section {
     box-shadow 0.25s var(--ease);
 }
 .bnr-card:hover .btn {
+  opacity: 1;
+  transform: none;
+}
+.bnr-card:focus-within .btn {
   opacity: 1;
   transform: none;
 }
