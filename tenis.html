@@ -109,6 +109,14 @@
             disponibilidade e preço.</p>
         </div>
 
+        <nav class="cat-brand-nav" aria-label="Ir para tênis por marca">
+          <a href="#marca-new-balance">New Balance</a>
+          <a href="#marca-nike">Nike</a>
+          <a href="#marca-oakley">Oakley</a>
+          <a href="#marca-puma">Puma</a>
+          <a href="#marca-vans">Vans</a>
+        </nav>
+
         <div class="cat-prod-grid" id="catProdGrid"></div><!-- /cat-prod-grid -->
 
         <div class="cat-prod-cta rv">
@@ -215,6 +223,10 @@
       './assets/categorias/tenis/new balance/480 Low Grafite.png',
       './assets/categorias/tenis/new balance/NM 808 preto : vermelho.png',
       './assets/categorias/tenis/new balance/nm 808 preto : branco.png',
+      './assets/categorias/tenis/nike/Nike Court Vision Low Se - White:Multi-color Black.avif',
+      './assets/categorias/tenis/nike/Nike Run Defy - Medium Ash:Blk Off Noir.avif',
+      './assets/categorias/tenis/nike/Nike Run Defy - White:Grid Iron - Hyper Pink.avif',
+      './assets/categorias/tenis/nike/Nike V5 RNR - Photon Dust:Dk Smoke Gray.avif',
       './assets/categorias/tenis/oakley/battle black.avif.png',
       './assets/categorias/tenis/oakley/halftrack iii low black.png',
       './assets/categorias/tenis/oakley/halftrack iii low gray : dark gray.png',
@@ -279,6 +291,7 @@
       './assets/categorias/tenis/vans/wayvee 2 skate brown.png'
     ];
 
+    const renderedBrands = new Set();
     const toTitleCase = (value) => value
       .replace(/[_-]+/g, ' ')
       .split(' ')
@@ -308,6 +321,11 @@
         const delayClass = index % 4 === 1 ? ' rv-d1' : index % 4 === 2 ? ' rv-d2' : index % 4 === 3 ? ' rv-d3' : '';
 
         card.className = `cat-prod-card rv${delayClass}`;
+        const brandSlug = brand.toLowerCase().replace(/\s+/g, '-');
+        if (!renderedBrands.has(brandSlug)) {
+          card.id = `marca-${brandSlug}`;
+          renderedBrands.add(brandSlug);
+        }
         card.innerHTML = `
           <div class="cat-prod-card__img">
             <img src="${encodeURI(filePath)}" alt="${name}" loading="lazy">
