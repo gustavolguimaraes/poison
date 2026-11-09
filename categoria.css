@@ -315,6 +315,23 @@ a.prod-card {
   padding: 0.55rem 0.875rem;
 }
 
+.cat-prod-grid--relogios .cat-prod-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.cat-prod-grid--relogios .cat-prod-card__img img {
+  object-fit: contain;
+}
+.cat-prod-grid--relogios .cat-prod-card__info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.cat-prod-grid--relogios .cat-prod-card .btn {
+  margin-top: auto;
+}
+
 /* CTA de fundo da grade */
 .cat-prod-cta {
   text-align: center;

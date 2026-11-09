@@ -21,8 +21,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon/favicon-16x16.png">
 </head>
-
 <body>
+
 
   <!-- WHATSAPP FLOAT -->
   <a class="wa-float"
@@ -39,7 +39,18 @@
     <ul>
       <li><a href="index.html" class="mob-lnk">Início</a></li>
       <li><a href="index.html#sobre" class="mob-lnk">Sobre</a></li>
-      <li><a href="index.html#produtos" class="mob-lnk">Produtos</a></li>
+      <li class="mob-nav__dropdown">
+        <button class="mob-nav__toggle product-menu-toggle" type="button" aria-expanded="false"
+          aria-controls="mobProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+        <ul class="mob-nav__submenu" id="mobProductMenu">
+          <li><a href="./tenis.html" class="mob-lnk">Tênis</a></li>
+          <li><a href="./bones.html" class="mob-lnk">Bonés</a></li>
+          <li><a href="./relogios.html" class="mob-lnk">Relógios</a></li>
+          <li><a href="./oculos.html" class="mob-lnk">Óculos</a></li>
+          <li><a href="./surf.html" class="mob-lnk">Surf</a></li>
+          <li><a href="./skate.html" class="mob-lnk">Skate</a></li>
+        </ul>
+      </li>
       <li><a href="index.html#loja" class="mob-lnk">Loja</a></li>
       <li><a href="index.html#contato" class="mob-lnk">Contato</a></li>
     </ul>
@@ -60,7 +71,18 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="index.html#sobre">Sobre</a></li>
-          <li><a href="index.html#produtos">Produtos</a></li>
+          <li class="hdr__dropdown">
+            <button class="hdr__dropdown-toggle product-menu-toggle" type="button" aria-expanded="false"
+              aria-controls="headerProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+            <ul class="hdr__dropdown-menu" id="headerProductMenu" hidden>
+              <li><a href="./tenis.html">Tênis</a></li>
+              <li><a href="./bones.html">Bonés</a></li>
+              <li><a href="./relogios.html">Relógios</a></li>
+              <li><a href="./oculos.html">Óculos</a></li>
+              <li><a href="./surf.html">Surf</a></li>
+              <li><a href="./skate.html">Skate</a></li>
+            </ul>
+          </li>
           <li><a href="index.html#loja">Loja</a></li>
           <li><a href="index.html#contato">Contato</a></li>
         </ul>
@@ -206,6 +228,15 @@
       burger.classList.remove('on');
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      closeProductMenus();
+    }
+    const productMenuToggles = document.querySelectorAll('.product-menu-toggle');
+    function closeProductMenus() {
+      productMenuToggles.forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.parentElement.classList.remove('is-open');
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = true;
+      });
     }
     burger.addEventListener('click', () => {
       const open = mobNav.classList.toggle('open');
@@ -214,6 +245,20 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
     mobLinks.forEach(l => l.addEventListener('click', closeMenu));
+    productMenuToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.parentElement.classList.toggle('is-open', open);
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = !open;
+      });
+    });
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.hdr__dropdown, .mob-nav__dropdown')) closeProductMenus();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeProductMenus();
+    });
 
     // ── PRODUTOS DA CATEGORIA (baseados nos arquivos das pastas) ──
     const productGrid = document.getElementById('catProdGrid');
@@ -234,10 +279,14 @@
       './assets/categorias/tenis/new balance/480 Low Grafite.png',
       './assets/categorias/tenis/new balance/NM 808 preto : vermelho.png',
       './assets/categorias/tenis/new balance/nm 808 preto : branco.png',
-      './assets/categorias/tenis/nike/Nike Court Vision Low Se - White:Multi-color Black.avif',
-      './assets/categorias/tenis/nike/Nike Run Defy - Medium Ash:Blk Off Noir.avif',
-      './assets/categorias/tenis/nike/Nike Run Defy - White:Grid Iron - Hyper Pink.avif',
-      './assets/categorias/tenis/nike/Nike V5 RNR - Photon Dust:Dk Smoke Gray.avif',
+      './assets/categorias/tenis/nike/adds-2026-11-09/air monarch iv - white:metallic silver .avif',
+      './assets/categorias/tenis/nike/adds-2026-10-30/court vision low black:smoke gray.avif',
+      './assets/categorias/tenis/nike/Court Vision Low Se - White:Multi-color Black.avif',
+      './assets/categorias/tenis/nike/adds-2026-11-09/initiator - light bone:cargo khaki.avif',
+      './assets/categorias/tenis/nike/Run Defy - Medium Ash:Blk Off Noir.avif',
+      './assets/categorias/tenis/nike/Run Defy - White:Grid Iron - Hyper Pink.avif',
+      './assets/categorias/tenis/nike/V5 RNR - Photon Dust:Dk Smoke Gray.avif',
+      './assets/categorias/tenis/nike/adds-2026-11-09/W V5 RNR LX - phantom:phantom moon particle.avif',
       './assets/categorias/tenis/oakley/battle black.avif.png',
       './assets/categorias/tenis/oakley/halftrack iii low black.png',
       './assets/categorias/tenis/oakley/halftrack iii low gray : dark gray.png',
@@ -249,16 +298,20 @@
       './assets/categorias/tenis/puma/catch black : white.png',
       './assets/categorias/tenis/puma/catch bronze : white.png',
       './assets/categorias/tenis/puma/club ii era black : white.png',
+      './assets/categorias/tenis/puma/adds-2026-10-30/club ii era chestnut brown.avif',
       './assets/categorias/tenis/puma/club ii era ice coffee : white.png',
       './assets/categorias/tenis/puma/club ii era sage frost : berry.png',
       './assets/categorias/tenis/puma/club ii era white : black.png',
       './assets/categorias/tenis/puma/club ii era white : vapor gray.png',
+      './assets/categorias/tenis/puma/adds-2026-10-30/club lt white : black : gum.avif',
       './assets/categorias/tenis/puma/court classic black : white.png',
       './assets/categorias/tenis/puma/court classic white : black.png',
       './assets/categorias/tenis/puma/court lally white : light gray.png',
       './assets/categorias/tenis/puma/court lally white : rose quartz.png',
+      './assets/categorias/tenis/puma/adds-2026-10-30/maxstride lite wmns alpine snow gray.avif',
       './assets/categorias/tenis/puma/park lifestyle black : white.png',
       './assets/categorias/tenis/puma/park lifestyle gray.png',
+      './assets/categorias/tenis/puma/adds-2026-10-30/scend pro 2 sea glass : black.avif',
       './assets/categorias/tenis/puma/shuffle downtown white.png',
       './assets/categorias/tenis/puma/shufle downtown black : white.png',
       './assets/categorias/tenis/puma/shufle downtown white : black : gold.png',
@@ -281,6 +334,7 @@
       './assets/categorias/tenis/vans/old skool skate black white.png',
       './assets/categorias/tenis/vans/old skool skate navy.png',
       './assets/categorias/tenis/vans/old skool skate wafflecup black white.png',
+      './assets/categorias/tenis/vans/adds-2026-11-09/Old Skool Skate Wafflecup - Reflective Black : Lime.avif',
       './assets/categorias/tenis/vans/sh8-hi black white.png',
       './assets/categorias/tenis/vans/sk8-hi red true white.png',
       './assets/categorias/tenis/vans/sk8-hi skate navy.png',
@@ -344,7 +398,7 @@
           <div class="cat-prod-card__info">
             <span class="cat-prod-card__brand">${brand}</span>
             <p class="cat-prod-card__name">${name}</p>
-            <a href="https://wa.me/5551984459543?text=Oi%21+Vim+pela+p%C3%A1gina+de+T%C3%AAnis+e+gostaria+de+mais+informa%C3%A7%C3%B5es." class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
+            <a href="https://wa.me/5551984459543?text=${encodeURIComponent(`Vim do site e quero saber mais sobre o tênis ${brand} ${name}.`)}" class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
           </div>`;
 
         productGrid.appendChild(card);

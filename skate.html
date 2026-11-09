@@ -33,7 +33,18 @@
     <ul>
       <li><a href="index.html" class="mob-lnk">Início</a></li>
       <li><a href="index.html#sobre" class="mob-lnk">Sobre</a></li>
-      <li><a href="index.html#produtos" class="mob-lnk">Produtos</a></li>
+      <li class="mob-nav__dropdown">
+        <button class="mob-nav__toggle product-menu-toggle" type="button" aria-expanded="false"
+          aria-controls="mobProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+        <ul class="mob-nav__submenu" id="mobProductMenu">
+          <li><a href="./tenis.html" class="mob-lnk">Tênis</a></li>
+          <li><a href="./bones.html" class="mob-lnk">Bonés</a></li>
+          <li><a href="./relogios.html" class="mob-lnk">Relógios</a></li>
+          <li><a href="./oculos.html" class="mob-lnk">Óculos</a></li>
+          <li><a href="./surf.html" class="mob-lnk">Surf</a></li>
+          <li><a href="./skate.html" class="mob-lnk">Skate</a></li>
+        </ul>
+      </li>
       <li><a href="index.html#loja" class="mob-lnk">Loja</a></li>
       <li><a href="index.html#contato" class="mob-lnk">Contato</a></li>
     </ul>
@@ -53,7 +64,18 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="index.html#sobre">Sobre</a></li>
-          <li><a href="index.html#produtos">Produtos</a></li>
+          <li class="hdr__dropdown">
+            <button class="hdr__dropdown-toggle product-menu-toggle" type="button" aria-expanded="false"
+              aria-controls="headerProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+            <ul class="hdr__dropdown-menu" id="headerProductMenu" hidden>
+              <li><a href="./tenis.html">Tênis</a></li>
+              <li><a href="./bones.html">Bonés</a></li>
+              <li><a href="./relogios.html">Relógios</a></li>
+              <li><a href="./oculos.html">Óculos</a></li>
+              <li><a href="./surf.html">Surf</a></li>
+              <li><a href="./skate.html">Skate</a></li>
+            </ul>
+          </li>
           <li><a href="index.html#loja">Loja</a></li>
           <li><a href="index.html#contato">Contato</a></li>
         </ul>
@@ -322,6 +344,15 @@
       burger.classList.remove('on');
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      closeProductMenus();
+    }
+    const productMenuToggles = document.querySelectorAll('.product-menu-toggle');
+    function closeProductMenus() {
+      productMenuToggles.forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.parentElement.classList.remove('is-open');
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = true;
+      });
     }
     burger.addEventListener('click', () => {
       const open = mobNav.classList.toggle('open');
@@ -330,6 +361,20 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
     mobLinks.forEach(l => l.addEventListener('click', closeMenu));
+    productMenuToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.parentElement.classList.toggle('is-open', open);
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = !open;
+      });
+    });
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.hdr__dropdown, .mob-nav__dropdown')) closeProductMenus();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeProductMenus();
+    });
 
     // ── HERO PARALLAX KICK ──
     const catHeroBg = document.getElementById('catHeroBg');

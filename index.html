@@ -43,7 +43,18 @@
     <ul>
       <li><a href="#inicio" class="mob-lnk">Início</a></li>
       <li><a href="#sobre" class="mob-lnk">Sobre</a></li>
-      <li><a href="#produtos" class="mob-lnk">Produtos</a></li>
+      <li class="mob-nav__dropdown">
+        <button class="mob-nav__toggle product-menu-toggle" type="button" aria-expanded="false"
+          aria-controls="mobProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+        <ul class="mob-nav__submenu" id="mobProductMenu">
+          <li><a href="./tenis.html" class="mob-lnk">Tênis</a></li>
+          <li><a href="./bones.html" class="mob-lnk">Bonés</a></li>
+          <li><a href="./relogios.html" class="mob-lnk">Relógios</a></li>
+          <li><a href="./oculos.html" class="mob-lnk">Óculos</a></li>
+          <li><a href="./surf.html" class="mob-lnk">Surf</a></li>
+          <li><a href="./skate.html" class="mob-lnk">Skate</a></li>
+        </ul>
+      </li>
       <li><a href="#loja" class="mob-lnk">Loja</a></li>
       <li><a href="#contato" class="mob-lnk">Contato</a></li>
     </ul>
@@ -64,7 +75,18 @@
         <ul>
           <li><a href="#inicio">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#produtos">Produtos</a></li>
+          <li class="hdr__dropdown">
+            <button class="hdr__dropdown-toggle product-menu-toggle" type="button" aria-expanded="false"
+              aria-controls="headerProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+            <ul class="hdr__dropdown-menu" id="headerProductMenu" hidden>
+              <li><a href="./tenis.html">Tênis</a></li>
+              <li><a href="./bones.html">Bonés</a></li>
+              <li><a href="./relogios.html">Relógios</a></li>
+              <li><a href="./oculos.html">Óculos</a></li>
+              <li><a href="./surf.html">Surf</a></li>
+              <li><a href="./skate.html">Skate</a></li>
+            </ul>
+          </li>
           <li><a href="#loja">Loja</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
@@ -135,156 +157,160 @@
 
           <!-- 1 -->
           <div class="bnr-card">
+            <a class="bnr-card__link" href="oculos.html#marca-mormaii" aria-label="Ver óculos Mormaii"></a>
+            <img src="./assets/banners/banner1-mormaii.avif" alt="Mormaii" class="bnr-card__img" loading="lazy">
+            <div class="bnr-card__veil"></div>
+            <div class="bnr-card__body">
+              <span class="bnr-card__tag">Eyewear</span>
+              <h3 class="bnr-card__name">Mormaii</h3>
+              <p class="bnr-card__desc">Modelos clássicos e novidades, com a qualidade que você conhece</p>
+              <a href="oculos.html#marca-mormaii"
+              class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
+            </div>
+          </div>
+          
+          <!-- 2 -->
+          <div class="bnr-card">
+            <a class="bnr-card__link" href="oculos.html#marca-colcci" aria-label="Ver óculos Colcci"></a>
+            <img src="./assets/banners/banner2-colcci.avif" alt="Colcci Eyewear" class="bnr-card__img"
+            loading="lazy">
+            <div class="bnr-card__veil"></div>
+            <div class="bnr-card__body">
+              <span class="bnr-card__tag">Eyewear</span>
+              <h3 class="bnr-card__name">Colcci</h3>
+              <p class="bnr-card__desc">Estilo e proteção para qualquer ocasião.</p>
+              <a href="oculos.html#marca-colcci"
+              class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
+            </div>
+          </div>
+          
+          <!-- 3 -->
+          <div class="bnr-card">
             <a class="bnr-card__link" href="tenis.html#marca-nike" aria-label="Ver tênis Nike"></a>
-            <img src="./assets/banners/banner-1-nike.png" alt="Novidades Nike"
+            <img src="./assets/banners/banner3-nike.avif" alt="Novidades Nike"
               class="bnr-card__img" loading="lazy">
             <div class="bnr-card__veil"></div>
             <div class="bnr-card__body">
               <span class="bnr-card__tag">Footwear</span>
               <h3 class="bnr-card__name">Nike</h3>
               <p class="bnr-card__desc">Mais estilo e conforto para você</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+saber+sobre+as+novidades+da+Nike."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
+              <a href="tenis.html#marca-nike"
+                class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
             </div>
           </div>
 
-          <!-- 2 -->
+          <!-- 4 -->
           <div class="bnr-card">
             <a class="bnr-card__link" href="tenis.html#marca-new-balance" aria-label="Ver tênis New Balance"></a>
-            <img src="./assets/banners/banner-2-nb.png" alt="Novidades New Balance" class="bnr-card__img"
-              loading="lazy">
+            <img src="./assets/banners/banner4-newbalance.avif" alt="Novidades New Balance" class="bnr-card__img"
+            loading="lazy">
             <div class="bnr-card__veil"></div>
             <div class="bnr-card__body">
               <span class="bnr-card__tag">Footwear</span>
               <h3 class="bnr-card__name">Tênis New Balance</h3>
               <p class="bnr-card__desc">Resistência e conforto. Para o dia a dia ou pra pista</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Gostaria+saber+sobre+os+novos+tênis+da+New+Balance."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
+              <a href="tenis.html#marca-new-balance"
+              class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
             </div>
           </div>
+          
 
-          <!-- 3 -->
+          <!-- 5 -->
           <div class="bnr-card">
-            <a class="bnr-card__link" href="bones.html#hurley" aria-label="Ver novidades"></a>
-            <img src="./assets/banners/banner3-bones-hurley.png" alt="Bones Hurley" class="bnr-card__img"
+            <a class="bnr-card__link" href="bones.html#marca-hurley" aria-label="Ver novidades"></a>
+            <img src="./assets/banners/banner5-hurley.avif" alt="Bones Hurley" class="bnr-card__img"
               loading="lazy">
             <div class="bnr-card__veil"></div>
             <div class="bnr-card__body">
               <span class="bnr-card__tag">Streetwear</span>
               <h3 class="bnr-card__name">Bonés Hurley</h3>
               <p class="bnr-card__desc"> Lançamentos da última coleção</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+saber+sobre+os+novos+bones+da+Hurley."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
+              <a href="bones.html#marca-hurley"
+              class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
             </div>
           </div>
-
-          <!-- 4 -->
-          <div class="bnr-card">
-            <a class="bnr-card__link" href="./relogios.html#ga2100" aria-label="Ver relógios G-Shock"></a>
-            <img src="./assets/banners/banner4-gshock-ga-2100.png" alt="G-Shock GA-2100" class="bnr-card__img"
-              loading="lazy">
-            <div class="bnr-card__veil"></div>
-            <div class="bnr-card__body">
-              <span class="bnr-card__tag">Relógios</span>
-              <h3 class="bnr-card__name">G-Shock GA-2100</h3>
-              <p class="bnr-card__desc">Robusto e icônico — resistência para todas as aventuras.</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+saber+sobre+o+G-Shock+GA-2100."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
-            </div>
-          </div>
-
-          <!-- 5 -->
-          <div class="bnr-card">
-            <a class="bnr-card__link" href="tenis.html#marca-new-balance" aria-label="Ver tênis New Balance 1010"></a>
-            <img src="./assets/banners/banner5-new-balance-1010.png" alt="New Balance 1010" class="bnr-card__img"
-              loading="lazy">
-            <div class="bnr-card__veil"></div>
-            <div class="bnr-card__body">
-              <span class="bnr-card__tag">Footwear</span>
-              <h3 class="bnr-card__name">New Balance 1010</h3>
-              <p class="bnr-card__desc">Conforto e performance para o dia a dia urbano.</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+saber+sobre+o+New+Balance+1010."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
-            </div>
-          </div>
-
+          
+          
           <!-- 6 -->
           <div class="bnr-card">
-            <a class="bnr-card__link" href="bones.html" aria-label="Ver acessórios da Bones e New Era"></a>
-            <img src="./assets/banners/banner6-bones-new-era.png" alt="Bones x New Era" class="bnr-card__img"
+            <a class="bnr-card__link" href="./oculos.html#marca-evoke" aria-label="Ver óculos Evoke"></a>
+            <img src="./assets/banners/banner6-evoke.avif" alt="Evoke" class="bnr-card__img"
+            loading="lazy">
+            <div class="bnr-card__veil"></div>
+            <div class="bnr-card__body">
+              <span class="bnr-card__tag">Eyewear</span>
+              <h3 class="bnr-card__name">Evoke x Street Fighter</h3>
+              <p class="bnr-card__desc">Collab exclusiva.</p>
+              <a href="./oculos.html#marca-evoke"
+              class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
+            </div>
+          </div>
+          
+          <!-- 7 -->
+          <div class="bnr-card">
+            <a class="bnr-card__link" href="relogios.html#marca-g-shock" aria-label="Ver G-Shock"></a>
+            <img src="./assets/banners/banner7-gshock.avif" alt="G-Shock" class="bnr-card__img"
               loading="lazy">
+            <div class="bnr-card__veil"></div>
+            <div class="bnr-card__body">
+              <span class="bnr-card__tag">Watches</span>
+              <h3 class="bnr-card__name">G-Shock</h3>
+              <p class="bnr-card__desc">Absolute Toughness.</p>
+              <a href="relogios.html#marca-g-shock"
+                class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
+            </div>
+          </div>
+          
+          <!-- 8 -->
+          <div class="bnr-card">
+            <a class="bnr-card__link" href="bones.html#marca-new-era" aria-label="Ver acessórios da Bones e New Era"></a>
+            <img src="./assets/banners/banner8-newera.avif" alt="Bones x New Era" class="bnr-card__img"
+            loading="lazy">
             <div class="bnr-card__veil"></div>
             <div class="bnr-card__body">
               <span class="bnr-card__tag">Acessórios</span>
-              <h3 class="bnr-card__name">Bones x New Era</h3>
-              <p class="bnr-card__desc">Colab exclusiva com estilo e qualidade para o dia a dia.</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+saber+sobre+os+Bones+%C3%97+New+Era."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
+              <h3 class="bnr-card__name">Bonés New Era</h3>
+              <p class="bnr-card__desc">Seus bonés preferidos.</p>
+              <a href="bones.html#marca-new-era"
+              class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
             </div>
           </div>
-
-          <!-- 7 -->
-          <!-- 
-          <div class="bnr-card">
-            <img src="./assets/banners/banner7-jaqueta-riu-kiu.png" alt="Jaqueta Riu Kiu" class="bnr-card__img"
-              loading="lazy">
-            <div class="bnr-card__veil"></div>
-            <div class="bnr-card__body">
-              <span class="bnr-card__tag">Streetwear</span>
-              <h3 class="bnr-card__name">Inverno 2026</h3>
-              <p class="bnr-card__desc">Leve, resistente e pronta para o clima urbano.</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+conhecer+a+coleção+Inverno+2026."
-                class="btn btn-orange" target="_blank" rel="noopener">Saber mais</a>
-            </div>
-          </div>
-           -->
-
-          <!-- 8 -->
+          
+          
+          <!-- 9 -->
           <div class="bnr-card">
             <a class="bnr-card__link" href="tenis.html#marca-puma" aria-label="Ver tênis Puma"></a>
-            <img src="./assets/banners/banner8-puma-club-era-sage-frost-berry.png" alt="Puma Club Era Sage Frost Berry"
-              class="bnr-card__img" loading="lazy">
+            <img src="./assets/banners/banner9-puma.avif" alt="Puma Club Era Sage Frost Berry"
+            class="bnr-card__img" loading="lazy">
             <div class="bnr-card__veil"></div>
             <div class="bnr-card__body">
               <span class="bnr-card__tag">Footwear</span>
               <h3 class="bnr-card__name">Puma Club Era</h3>
               <p class="bnr-card__desc">Cores vibrantes e conforto para o dia a dia.</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+saber+sobre+o+Puma+Club+Era+Sage+Frost+Berry."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
+              <a href="tenis.html#marca-puma"
+              class="btn btn-orange" target="_blank" rel="noopener">Ver mais</a>
             </div>
           </div>
-
-          <!-- 9 -->
-          <div class="bnr-card">
-            <a class="bnr-card__link" href="oculos.html#marca-colcci" aria-label="Ver óculos Colcci"></a>
-            <img src="./assets/banners/banner9-colcci-eyewear.png" alt="Colcci Eyewear" class="bnr-card__img"
+          
+          
+          <!-- banner inativo -->
+          <!-- 
+            <div class="bnr-card">
+              <img src="./assets/banners/banner7-jaqueta-riu-kiu.png" alt="Jaqueta Riu Kiu" class="bnr-card__img"
               loading="lazy">
-            <div class="bnr-card__veil"></div>
-            <div class="bnr-card__body">
-              <span class="bnr-card__tag">Eyewear</span>
-              <h3 class="bnr-card__name">Colcci Eyewear</h3>
-              <p class="bnr-card__desc">Estilo premium e proteção UV para qualquer ocasião.</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+saber+sobre+o+Colcci+Eyewear."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
+              <div class="bnr-card__veil"></div>
+              <div class="bnr-card__body">
+                <span class="bnr-card__tag">Streetwear</span>
+                <h3 class="bnr-card__name">Inverno 2026</h3>
+                <p class="bnr-card__desc">Leve, resistente e pronta para o clima urbano.</p>
+                <a href="https://wa.me/5551984459543?text=Oi%21+Quero+conhecer+a+coleção+Inverno+2026."
+                class="btn btn-orange" target="_blank" rel="noopener">Saber mais</a>
+              </div>
             </div>
-          </div>
-
-          <!-- 10 -->
-          <div class="bnr-card">
-            <a class="bnr-card__link" href="oculos.html#marca-mormaii" aria-label="Ver óculos Mormaii"></a>
-            <img src="./assets/banners/banner10-mormaii.png" alt="Mormaii" class="bnr-card__img" loading="lazy">
-            <div class="bnr-card__veil"></div>
-            <div class="bnr-card__body">
-              <span class="bnr-card__tag">Eyewear</span>
-              <h3 class="bnr-card__name">Mormaii</h3>
-              <p class="bnr-card__desc">Modelos clásscos com qualidade e tradição.</p>
-              <a href="https://wa.me/5551984459543?text=Oi%21+Quero+saber+sobre+os+óculos+da+Mormaii."
-                class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
-            </div>
-          </div>
-
+          -->
+          
         </div><!-- /track -->
-
+        
         <button class="banners__btn banners__btn--prev" id="bannersPrev" aria-label="Banner anterior">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
             stroke-linejoin="round">
@@ -380,7 +406,7 @@
         </div>
       </div>
     </section>
--->
+    -->
     <!-- ========== PRODUTOS ========== -->
     <section id="produtos" class="prods">
       <div class="wrap">
@@ -631,11 +657,20 @@
     const burger = document.getElementById('burger');
     const mobNav = document.getElementById('mobNav');
     const mobLinks = document.querySelectorAll('.mob-lnk');
+    const productMenuToggles = document.querySelectorAll('.product-menu-toggle');
+    function closeProductMenus() {
+      productMenuToggles.forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.parentElement.classList.remove('is-open');
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = true;
+      });
+    }
     function closeMenu() {
       mobNav.classList.remove('open');
       burger.classList.remove('on');
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      closeProductMenus();
     }
     burger.addEventListener('click', () => {
       const open = mobNav.classList.toggle('open');
@@ -644,6 +679,20 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
     mobLinks.forEach(l => l.addEventListener('click', closeMenu));
+    productMenuToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.parentElement.classList.toggle('is-open', open);
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = !open;
+      });
+    });
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.hdr__dropdown, .mob-nav__dropdown')) closeProductMenus();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeProductMenus();
+    });
 
     // ── HERO BG PARALLAX KICK ──
     const heroBg = document.getElementById('heroBg');

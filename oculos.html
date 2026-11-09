@@ -40,7 +40,18 @@
         <ul>
             <li><a href="index.html" class="mob-lnk">Início</a></li>
             <li><a href="index.html#sobre" class="mob-lnk">Sobre</a></li>
-            <li><a href="index.html#produtos" class="mob-lnk">Produtos</a></li>
+            <li class="mob-nav__dropdown">
+                <button class="mob-nav__toggle product-menu-toggle" type="button" aria-expanded="false"
+                    aria-controls="mobProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+                <ul class="mob-nav__submenu" id="mobProductMenu">
+                    <li><a href="./tenis.html" class="mob-lnk">Tênis</a></li>
+                    <li><a href="./bones.html" class="mob-lnk">Bonés</a></li>
+                    <li><a href="./relogios.html" class="mob-lnk">Relógios</a></li>
+                    <li><a href="./oculos.html" class="mob-lnk">Óculos</a></li>
+                    <li><a href="./surf.html" class="mob-lnk">Surf</a></li>
+                    <li><a href="./skate.html" class="mob-lnk">Skate</a></li>
+                </ul>
+            </li>
             <li><a href="index.html#loja" class="mob-lnk">Loja</a></li>
             <li><a href="index.html#contato" class="mob-lnk">Contato</a></li>
         </ul>
@@ -61,7 +72,18 @@
                 <ul>
                     <li><a href="index.html">Início</a></li>
                     <li><a href="index.html#sobre">Sobre</a></li>
-                    <li><a href="index.html#produtos">Produtos</a></li>
+                    <li class="hdr__dropdown">
+                        <button class="hdr__dropdown-toggle product-menu-toggle" type="button" aria-expanded="false"
+                            aria-controls="headerProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+                        <ul class="hdr__dropdown-menu" id="headerProductMenu" hidden>
+                            <li><a href="./tenis.html">Tênis</a></li>
+                            <li><a href="./bones.html">Bonés</a></li>
+                            <li><a href="./relogios.html">Relógios</a></li>
+                            <li><a href="./oculos.html">Óculos</a></li>
+                            <li><a href="./surf.html">Surf</a></li>
+                            <li><a href="./skate.html">Skate</a></li>
+                        </ul>
+                    </li>
                     <li><a href="index.html#loja">Loja</a></li>
                     <li><a href="index.html#contato">Contato</a></li>
                 </ul>
@@ -119,11 +141,6 @@
                 </nav>
 
                 <div class="cat-prod-grid" id="catProdGrid"></div><!-- /cat-prod-grid -->
-
-                <div class="cat-brand-empty" id="marca-evoke" role="status">
-                    <strong>Evoke</strong>
-                    <span>Nenhum óculos Evoke cadastrado no momento.</span>
-                </div>
 
                 <div class="cat-prod-cta rv">
                     <p>Não encontrou o que procura? Fale com a gente pelo WhatsApp.</p>
@@ -215,6 +232,15 @@
             burger.classList.remove('on');
             burger.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
+            closeProductMenus();
+        }
+        const productMenuToggles = document.querySelectorAll('.product-menu-toggle');
+        function closeProductMenus() {
+            productMenuToggles.forEach(toggle => {
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.parentElement.classList.remove('is-open');
+                document.getElementById(toggle.getAttribute('aria-controls')).hidden = true;
+            });
         }
         burger.addEventListener('click', () => {
             const open = mobNav.classList.toggle('open');
@@ -223,20 +249,52 @@
             document.body.style.overflow = open ? 'hidden' : '';
         });
         mobLinks.forEach(l => l.addEventListener('click', closeMenu));
+        productMenuToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const open = toggle.getAttribute('aria-expanded') !== 'true';
+                toggle.setAttribute('aria-expanded', String(open));
+                toggle.parentElement.classList.toggle('is-open', open);
+                document.getElementById(toggle.getAttribute('aria-controls')).hidden = !open;
+            });
+        });
+        document.addEventListener('click', event => {
+            if (!event.target.closest('.hdr__dropdown, .mob-nav__dropdown')) closeProductMenus();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') closeProductMenus();
+        });
 
         // ── PRODUTOS DA CATEGORIA (baseados nos arquivos das pastas) ──
         const productGrid = document.getElementById('catProdGrid');
         const productFiles = [
-            './assets/categorias/oculos/colcci/colcci c0277 C0277E6026.png',
-            './assets/categorias/oculos/colcci/colcci ellen C0285A1236.png',
-            './assets/categorias/oculos/colcci/colcci garnet 2 C0220A0221.png',
-            './assets/categorias/oculos/colcci/colcci luiza sun C0293AFP02.png',
-            './assets/categorias/oculos/colcci/colcci miranda C0292A0233.png',
-            './assets/categorias/oculos/colcci/colcci pietro C0310A0233.png',
-            './assets/categorias/oculos/colcci/colcci pietro C0310KCC02.png',
-            './assets/categorias/oculos/colcci/colcci unü C0294A0201.png',
-            './assets/categorias/oculos/colcci/colcci unü C0294F2102.png',
-            './assets/categorias/oculos/colcci/colcci vizo C0282E1034.png',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Alicia - C0314A02A9.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Alicia - C0314AGU33.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Alicia - C0314F2134.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Alicia - C0314KF234.avif',
+            // './assets/categorias/oculos/colcci/c0277 C0277E6026.png',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/C0300 - C0300A02AG.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/C0306 - C0306E10AR.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/C0308 - C0308E0834.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/C0309 - C0309E2734.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Charlotte - C0311A0233.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Charlotte - C0311J39A6.avif',
+            './assets/categorias/oculos/colcci/ellen C0285A1236.png',
+            './assets/categorias/oculos/colcci/garnet 2 C0220A0221.png',
+            './assets/categorias/oculos/colcci/luiza sun C0293AFP02.png',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Mari - C0312J0402.avif',
+            './assets/categorias/oculos/colcci/miranda C0292A0233.png',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Petra - C0317A0233.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Petra - C0317KF534.avif',
+            './assets/categorias/oculos/colcci/pietro C0310A0233.png',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Pietro - C0310A1403.avif',
+            // './assets/categorias/oculos/colcci/pietro C0310KCC02.png',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Pietro - C0310KCC02.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Taylor - C0313A0201.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Taylor - C0313F2134.avif',
+            './assets/categorias/oculos/colcci/adds 2026-11-05/Taylor - C0313J08AL.avif',
+            './assets/categorias/oculos/colcci/unü C0294A0201.png',
+            './assets/categorias/oculos/colcci/unü C0294F2102.png',
+            './assets/categorias/oculos/colcci/vizo C0282E1034.png',
             './assets/categorias/oculos/mormaii/Acqua NG Polarizado M0154KC603.avif',
             './assets/categorias/oculos/mormaii/agra sun M0152A0221.avif',
             './assets/categorias/oculos/mormaii/agra sun M0152B6134.avif',
@@ -363,9 +421,38 @@
             './assets/categorias/oculos/oakley/oakley-radar-ev-path-matte-black-prizm-road.png',
             './assets/categorias/oculos/oakley/oakley-radar-ev-path-polished-black-prizm-black.png',
             './assets/categorias/oculos/oakley/oakley-stunt-wing-matte-gray-smoke-prizm-ruby.png',
+            './assets/categorias/oculos/evoke/avalanche street fighter x m. bison.avif',
+            './assets/categorias/oculos/evoke/b-side street fighter x cammy.avif',
+            './assets/categorias/oculos/evoke/bomber street fighter x balrog.avif',
+            './assets/categorias/oculos/evoke/outlaw street fighter x ken.avif',
+            './assets/categorias/oculos/evoke/avalanche m black gun.avif',
+            './assets/categorias/oculos/evoke/avalanche matte black.avif',
+            './assets/categorias/oculos/evoke/b-side matte black.avif',
+            './assets/categorias/oculos/evoke/bomber turtle gold.avif',
+            './assets/categorias/oculos/evoke/bomber yago dora.avif',
+            './assets/categorias/oculos/evoke/capo vi black wood.avif',
+            './assets/categorias/oculos/evoke/capo vi matte black.avif',
+            './assets/categorias/oculos/evoke/capo x henrique fogaca.avif',
+            './assets/categorias/oculos/evoke/code black shine green.avif',
+            './assets/categorias/oculos/evoke/code crystal blue.avif',
+            './assets/categorias/oculos/evoke/code m black brown gradient.avif',
+            './assets/categorias/oculos/evoke/code matte black.avif',
+            './assets/categorias/oculos/evoke/evk 20 matte black.avif',
+            './assets/categorias/oculos/evoke/for you matte black.avif',
+            './assets/categorias/oculos/evoke/for you yago dora.avif',
+            './assets/categorias/oculos/evoke/futurah blue gray.avif',
+            './assets/categorias/oculos/evoke/lodown matte black gradient.avif',
+            './assets/categorias/oculos/evoke/lodown matte black.avif',
+            './assets/categorias/oculos/evoke/shelby 04 matte black.avif',
+            './assets/categorias/oculos/evoke/shelby 05 matte black green.avif',
+            './assets/categorias/oculos/evoke/shelby 06t matte black.avif',
+            './assets/categorias/oculos/evoke/snowstorm matte black.avif',
+            './assets/categorias/oculos/evoke/the box matte black .avif',
+            './assets/categorias/oculos/evoke/the code ii black shine g15.avif',
+            './assets/categorias/oculos/evoke/the code ii matte black brown gradient.avif',
         ];
 
-        const brandNames = { colcci: 'Colcci', mormaii: 'Mormaii', hb: 'HB', oakley: 'Oakley' };
+        const brandNames = { colcci: 'Colcci', mormaii: 'Mormaii', hb: 'HB', oakley: 'Oakley', evoke: 'Evoke' };
         const renderedBrands = new Set();
         const formatName = (fileName) => {
             let cleaned = fileName;
@@ -401,7 +488,7 @@
                     <div class="cat-prod-card__info">
                         <span class="cat-prod-card__brand">${brand}</span>
                         <p class="cat-prod-card__name">${name}</p>
-                        <a href="https://wa.me/5551984459543?text=Oi%21+Vim+pela+p%C3%A1gina+de+%C3%93culos+e+gostaria+de+mais+informa%C3%A7%C3%B5es." class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
+                        <a href="https://wa.me/5551984459543?text=${encodeURIComponent(`Vim do site e quero saber mais sobre os óculos ${brand} ${name}.`)}" class="btn btn-orange" target="_blank" rel="noopener">Perguntar Preço</a>
                     </div>`;
 
                 productGrid.appendChild(card);

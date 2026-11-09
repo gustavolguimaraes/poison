@@ -33,7 +33,18 @@
     <ul>
       <li><a href="index.html" class="mob-lnk">Início</a></li>
       <li><a href="index.html#sobre" class="mob-lnk">Sobre</a></li>
-      <li><a href="index.html#produtos" class="mob-lnk">Produtos</a></li>
+      <li class="mob-nav__dropdown">
+        <button class="mob-nav__toggle product-menu-toggle" type="button" aria-expanded="false"
+          aria-controls="mobProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+        <ul class="mob-nav__submenu" id="mobProductMenu">
+          <li><a href="./tenis.html" class="mob-lnk">Tênis</a></li>
+          <li><a href="./bones.html" class="mob-lnk">Bonés</a></li>
+          <li><a href="./relogios.html" class="mob-lnk">Relógios</a></li>
+          <li><a href="./oculos.html" class="mob-lnk">Óculos</a></li>
+          <li><a href="./surf.html" class="mob-lnk">Surf</a></li>
+          <li><a href="./skate.html" class="mob-lnk">Skate</a></li>
+        </ul>
+      </li>
       <li><a href="index.html#loja" class="mob-lnk">Loja</a></li>
       <li><a href="index.html#contato" class="mob-lnk">Contato</a></li>
     </ul>
@@ -53,7 +64,18 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="index.html#sobre">Sobre</a></li>
-          <li><a href="index.html#produtos">Produtos</a></li>
+          <li class="hdr__dropdown">
+            <button class="hdr__dropdown-toggle product-menu-toggle" type="button" aria-expanded="false"
+              aria-controls="headerProductMenu">Produtos <span aria-hidden="true">⌄</span></button>
+            <ul class="hdr__dropdown-menu" id="headerProductMenu" hidden>
+              <li><a href="./tenis.html">Tênis</a></li>
+              <li><a href="./bones.html">Bonés</a></li>
+              <li><a href="./relogios.html">Relógios</a></li>
+              <li><a href="./oculos.html">Óculos</a></li>
+              <li><a href="./surf.html">Surf</a></li>
+              <li><a href="./skate.html">Skate</a></li>
+            </ul>
+          </li>
           <li><a href="index.html#loja">Loja</a></li>
           <li><a href="index.html#contato">Contato</a></li>
         </ul>
@@ -182,6 +204,15 @@
       burger.classList.remove('on');
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      closeProductMenus();
+    }
+    const productMenuToggles = document.querySelectorAll('.product-menu-toggle');
+    function closeProductMenus() {
+      productMenuToggles.forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.parentElement.classList.remove('is-open');
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = true;
+      });
     }
     burger.addEventListener('click', () => {
       const open = mobNav.classList.toggle('open');
@@ -190,50 +221,80 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
     mobLinks.forEach(l => l.addEventListener('click', closeMenu));
+    productMenuToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.parentElement.classList.toggle('is-open', open);
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = !open;
+      });
+    });
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.hdr__dropdown, .mob-nav__dropdown')) closeProductMenus();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeProductMenus();
+    });
 
     // ── PRODUTOS DA CATEGORIA (baseados nos arquivos da pasta) ──
     const productGrid = document.getElementById('catProdGrid');
     const productFiles = [
-      './assets/categorias/bones/hurley flat bomb preto.avif',
-      './assets/categorias/bones/hurley hexa chumbo.avif',
-      './assets/categorias/bones/hurley hexa preto.avif',
-      './assets/categorias/bones/hurley icon azul.png',
-      './assets/categorias/bones/hurley icon branco.png',
-      './assets/categorias/bones/hurley icon cinza.avif',
-      './assets/categorias/bones/hurley icon marinho.avif',
-      './assets/categorias/bones/hurley icon preto:branco.avif',
-      './assets/categorias/bones/hurley icon preto:laranja.avif',
-      './assets/categorias/bones/hurley meta cinza.avif',
-      './assets/categorias/bones/hurley meta preto.avif',
-      './assets/categorias/bones/hurley no rules militar.avif',
-      './assets/categorias/bones/hurley no rules preto.avif',
-      './assets/categorias/bones/hurley one&only azul.png',
-      './assets/categorias/bones/hurley one&only cinza.png',
-      './assets/categorias/bones/hurley one&only militar.avif',
-      './assets/categorias/bones/hurley outline chumbo.avif',
-      './assets/categorias/bones/hurley outline marinho.avif',
-      './assets/categorias/bones/hurley outline preto.avif',
-      './assets/categorias/bones/hurley patch classic preto.avif',
-      './assets/categorias/bones/hurley sqaure cinza.avif',
-      './assets/categorias/bones/hurley surf club preto.avif',
-      './assets/categorias/bones/new era 920 LA dodgers marinho.png',
-      './assets/categorias/bones/new era 920 la dodgers all black.png.png',
-      './assets/categorias/bones/new era 920 ny yankees kaky.png',
-      './assets/categorias/bones/new era 940 NY Yankees Marinho.png',
-      './assets/categorias/bones/quiksilver adapted branco.png',
-      './assets/categorias/bones/quiksilver adapted cinza.png',
-      './assets/categorias/bones/quiksilver adapted verde.png',
-      './assets/categorias/bones/quiksilver emb quik outdoor preto.png',
-      './assets/categorias/bones/quiksilver emb side omni vermelho.png',
-      './assets/categorias/bones/quiksilver emb square branco.png',
-      './assets/categorias/bones/quiksilver emb square.png',
-      './assets/categorias/bones/quiksilver emb three logo marinho.png',
-      './assets/categorias/bones/quiksilver emb three logo preto.png',
-      './assets/categorias/bones/quiksilver emb three logo vermelho.png',
-      './assets/categorias/bones/quiksilver emb type heritage azul claro.png',
-      './assets/categorias/bones/quiksilver gradient broken type branco.png',
-      './assets/categorias/bones/quiksilver gradient broken type marinho.png',
-      './assets/categorias/bones/quiksilver soft hologram branco.png',
+      './assets/categorias/bones/hurley/flat bomb preto.avif',
+      './assets/categorias/bones/hurley/hexa chumbo.avif',
+      './assets/categorias/bones/hurley/hexa preto.avif',
+      './assets/categorias/bones/hurley/icon azul.png',
+      './assets/categorias/bones/hurley/icon branco.png',
+      './assets/categorias/bones/hurley/icon cinza.avif',
+      './assets/categorias/bones/hurley/icon marinho.avif',
+      './assets/categorias/bones/hurley/icon preto:branco.avif',
+      './assets/categorias/bones/hurley/icon preto:laranja.avif',
+      './assets/categorias/bones/hurley/meta cinza.avif',
+      './assets/categorias/bones/hurley/meta preto.avif',
+      './assets/categorias/bones/hurley/no rules militar.avif',
+      './assets/categorias/bones/hurley/no rules preto.avif',
+      './assets/categorias/bones/hurley/one&only azul.png',
+      './assets/categorias/bones/hurley/one&only cinza.png',
+      './assets/categorias/bones/hurley/one&only militar.avif',
+      './assets/categorias/bones/hurley/outline chumbo.avif',
+      './assets/categorias/bones/hurley/outline marinho.avif',
+      './assets/categorias/bones/hurley/outline preto.avif',
+      './assets/categorias/bones/hurley/patch classic preto.avif',
+      './assets/categorias/bones/hurley/sqaure cinza.avif',
+      './assets/categorias/bones/hurley/surf club preto.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/15169365 - 9FORTY A-Frame New York Yankees Metal Badge Preto.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/15169367 - 9FORTY A-Frame Los Angeles Dodgers Metal Badge Preto.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60551336 - 59FIFTY New York Yankees MLB.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60642260 - 9FIFTY A-Frame Los Angeles Dodgers MLB.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60642265 - 9FIFTY A-Frame Chicago White Sox MLB.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60642357 - 9FIFTY A-Frame New York Yankees MLB.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60716239 - 940 Los Angeles Dodgers MLB.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60716241 - 940 New York Yankees MLB.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60716248 - 9FORTY M-Crown Chicago White Sox MLB Branco .avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60903403 - 1920 Color pack LA Dodgers.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60915842 - Patch Cord EF Trucker New Era.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/60935347 - 9FORTY M-Crown A-Frame Los Angeles Dodgers Arch YOUTH.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/71051394 - FORTY A-Frame Chicago White Sox 250th Azul-marinho .avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/MBV24BON099 - 940 A-FRAME NEW YORK YANKEES.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/mbv19bon151 - 940 A-frame new york yankees.avif',
+      './assets/categorias/bones/new era/adds-2026-11-05/mbv23bon090 - 940 A-FRAME NEW YORK YANKEES.avif',
+      './assets/categorias/bones/new era/920 LA dodgers marinho.png',
+      './assets/categorias/bones/new era/920 la dodgers all black.png.png',
+      './assets/categorias/bones/new era/920 ny yankees kaky.png',
+      './assets/categorias/bones/new era/940 NY Yankees Marinho.png',
+      './assets/categorias/bones/quiksilver/adapted branco.png',
+      './assets/categorias/bones/quiksilver/adapted cinza.png',
+      './assets/categorias/bones/quiksilver/adapted verde.png',
+      './assets/categorias/bones/quiksilver/emb quik outdoor preto.png',
+      './assets/categorias/bones/quiksilver/emb side omni vermelho.png',
+      './assets/categorias/bones/quiksilver/emb square branco.png',
+      './assets/categorias/bones/quiksilver/emb square.png',
+      './assets/categorias/bones/quiksilver/emb three logo marinho.png',
+      './assets/categorias/bones/quiksilver/emb three logo preto.png',
+      './assets/categorias/bones/quiksilver/emb three logo vermelho.png',
+      './assets/categorias/bones/quiksilver/emb type heritage azul claro.png',
+      './assets/categorias/bones/quiksilver/gradient broken type branco.png',
+      './assets/categorias/bones/quiksilver/gradient broken type marinho.png',
+      './assets/categorias/bones/quiksilver/soft hologram branco.png',
     ];
 
     const brandNames = { hurley: 'Hurley', 'new era': 'New Era', quiksilver: 'Quiksilver' };
@@ -253,7 +314,12 @@
     if (productGrid) {
       productFiles.forEach((filePath, index) => {
         const fileName = filePath.split('/').pop();
-        const brandKey = Object.keys(brandNames).find(key => fileName.toLowerCase().startsWith(`${key} `));
+        const pathParts = filePath.split('/');
+        const bonesIndex = pathParts.indexOf('bones');
+        const folderBrand = pathParts[bonesIndex + 1]?.toLowerCase();
+        const brandKey = brandNames[folderBrand]
+          ? folderBrand
+          : Object.keys(brandNames).find(key => fileName.toLowerCase().startsWith(`${key} `));
         if (!brandKey) {
           throw new Error(`Não foi possível identificar a marca do produto: ${fileName}`);
         }
@@ -284,7 +350,7 @@
         name.className = 'cat-prod-card__name';
         name.textContent = formatName(fileName, brandKey);
         const contact = document.createElement('a');
-        contact.href = 'https://wa.me/5551984459543?text=Oi%21+Vim+pela+p%C3%A1gina+de+Bon%C3%A9s+e+gostaria+de+mais+informa%C3%A7%C3%B5es.';
+        contact.href = `https://wa.me/5551984459543?text=${encodeURIComponent(`Vim do site e quero saber mais sobre o boné ${brand} ${name.textContent}.`)}`;
         contact.className = 'btn btn-orange';
         contact.target = '_blank';
         contact.rel = 'noopener';
